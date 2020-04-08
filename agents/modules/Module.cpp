@@ -1350,6 +1350,27 @@ void Module::printGraph(const char* filename)
 				//fprintf(fp,"%d [label=\"%d\",peripheries=%d,style=filled, fillcolor=lightgreen]\n",i,i,n[i].firing_rate/7+1);
 			}
 			break;
+			case THRESHOLD_PARITY:
+			{
+				//fprintf(fp,"%d [style=filled,fillcolor=green]\n",i);
+				fprintf(fp,"%d [label=\"%d_fire%d\",style=filled, fillcolor=red]\n",i,i,n[i].firing_rate);
+				//fprintf(fp,"%d [label=\"%d\",peripheries=%d,style=filled, fillcolor=lightgreen]\n",i,i,n[i].firing_rate/7+1);
+			}
+			break;
+			case THRESHOLD_AND:
+			{
+				//fprintf(fp,"%d [style=filled,fillcolor=green]\n",i);
+				fprintf(fp,"%d [label=\"%d_fire%d\",style=filled, fillcolor=yellow]\n",i,i,n[i].firing_rate);
+				//fprintf(fp,"%d [label=\"%d\",peripheries=%d,style=filled, fillcolor=lightgreen]\n",i,i,n[i].firing_rate/7+1);
+			}
+			break;
+			case THRESHOLD_NAND:
+			{
+				//fprintf(fp,"%d [style=filled,fillcolor=green]\n",i);
+				fprintf(fp,"%d [label=\"%d_fire%d\",style=filled, fillcolor=black]\n",i,i,n[i].firing_rate);
+				//fprintf(fp,"%d [label=\"%d\",peripheries=%d,style=filled, fillcolor=lightgreen]\n",i,i,n[i].firing_rate/7+1);
+			}
+			break;
 			case SIGMOID:
 			{
 				//fprintf(fp,"%d [style=filled,fillcolor=blue]\n",i);

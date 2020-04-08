@@ -19,7 +19,7 @@
 //Input and Output neurons are special neurons, which can not be randomly generated and therefore
 //are after the NUMBER_OF_NEURON_TYPES definition
 //enum{IDENTITY, SIGMOID, THRESHOLD, RANDOM, CONTROL, SIN, NUMBER_OF_NEURON_TYPES, INPUT_IDENTITY, INPUT_SIGMOID, OUTPUT_IDENTITY, OUTPUT_SIGMOID};
-enum{IDENTITY, SIGMOID, THRESHOLD, RANDOM, CONTROL, NUMBER_OF_NEURON_TYPES, INPUT_IDENTITY, INPUT_SIGMOID, OUTPUT_IDENTITY, OUTPUT_SIGMOID, SIN};
+enum{IDENTITY, SIGMOID, THRESHOLD, THRESHOLD_PARITY, THRESHOLD_AND, THRESHOLD_NAND, RANDOM, CONTROL, NUMBER_OF_NEURON_TYPES, INPUT_IDENTITY, INPUT_SIGMOID, OUTPUT_IDENTITY, OUTPUT_SIGMOID, SIN};
 
 
 //starting levels of firing rate 
@@ -129,6 +129,27 @@ inline void fprintNeuronType(FILE* fp, int neuron_type)
 		}
 		break;
 
+		case THRESHOLD_PARITY:
+		{
+			fprintf(fp,"Threshold_parity");
+			return;
+		}
+		break;
+
+		case THRESHOLD_AND:
+		{
+			fprintf(fp,"Threshold_AND");
+			return;
+		}
+		break;
+
+		case THRESHOLD_NAND:
+		{
+			fprintf(fp,"Threshold_NAND");
+			return;
+		}
+		break;
+
 		case SIGMOID:
 		{
 			fprintf(fp,"Sigmoid");
@@ -205,6 +226,27 @@ inline void printNeuronType(int neuron_type)
 		case IDENTITY:
 		{
 			printf("Identity");
+			return;
+		}
+		break;
+
+		case THRESHOLD_PARITY:
+		{
+			printf("Threshold_parity");
+			return;
+		}
+		break;
+
+		case THRESHOLD_AND:
+		{
+			printf("Threshold_AND");
+			return;
+		}
+		break;
+
+		case THRESHOLD_NAND:
+		{
+			printf("Threshold_NAND");
 			return;
 		}
 		break;
@@ -290,10 +332,47 @@ inline float activationFunction(int neuron_type, float weighted_input, Random* r
 			return (float)result;
 		}
 		break;
-		
+
 		case THRESHOLD:
 		{
 		}
+		
+		case THRESHOLD_PARITY:
+		{
+			if (weighted_input > 0) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		break;
+
+		case THRESHOLD_AND:
+		{
+			float bias = 1.5;
+			weighted_input += bias;
+
+			if (weighted_input > 0) {
+				return 1.0;
+			} else {
+				return 0.0;
+			}
+		}
+		break;
+
+		case THRESHOLD_NAND:
+		{
+			float bias = 1.5;
+			weighted_input += bias;
+
+			if (weighted_input > 0) {
+				return 0.0;
+			} else {
+				return 1.0;
+			}
+		}
+		break;
+
 		case CONTROL:
 		{
 			if(weighted_input >= 0)
@@ -327,7 +406,10 @@ inline float activationFunction(int neuron_type, float weighted_input, Random* r
 	
 		case SIGMOID:
 		{
+			return (weighted_input / (1 + abs(weighted_input)));
 		}
+		break;
+
 		case INPUT_SIGMOID:
 		{
 		}

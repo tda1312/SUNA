@@ -9,7 +9,7 @@
 #include"environments/Double_Cart_Pole.h"
 #include"environments/Mountain_Car.h"
 #include"parameters.h"
-
+#include"environments/Multiplexer.h"
 
 int main(int argc, char** argv)
 {
@@ -23,13 +23,13 @@ int main(int argc, char** argv)
 
 	Random* random= new State_of_Art_Random(time(NULL));
 	
-	Reinforcement_Environment* env= new Function_Approximation(random,1000,true);
+	// Reinforcement_Environment* env= new Function_Approximation(random,1000,true);
 	//Reinforcement_Environment* env= new Mountain_Car(random);
 	//Reinforcement_Environment* env= new Single_Cart_Pole(random);
 	//Reinforcement_Environment* env= new Double_Cart_Pole(random);
-	//Reinforcement_Environment* env= new Multiplexer(2,4,random);
+	Reinforcement_Environment* env= new Multiplexer(2,4,random);
 
-//	Reinforcement_Agent* agent= new Dummy(env);
+	// Reinforcement_Agent* agent= new Dummy(env);
 	Reinforcement_Agent* agent= new Unified_Neural_Model(random);
 
 	int number_of_observation_vars;

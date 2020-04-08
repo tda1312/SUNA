@@ -4,6 +4,7 @@
 
 //agents
 #include"agents/Unified_Neural_Model.h"
+#include"agents/Dummy.h"
 
 //environments
 #include"environments/Function_Approximation.h"
@@ -83,12 +84,12 @@ int main()
 	Random* random= new State_of_Art_Random(time(NULL));
 	
 	//Reinforcement_Environment* env= new Mountain_Car(random);
-	Reinforcement_Environment* env= new Function_Approximation(random,1000,false);
+	// Reinforcement_Environment* env= new Function_Approximation(random,1000,false);
 	//Reinforcement_Environment* env= new Single_Cart_Pole(random);
 //Reinforcement_Environment* env= new Double_Cart_Pole(random);
-	//Reinforcement_Environment* env= new Multiplexer(3,8,random);
+	Reinforcement_Environment* env= new Multiplexer(3,8,random);
 
-	//Reinforcement_Agent* agent= new Dummy(env);
+	// Reinforcement_Agent* agent= new Dummy(env);
 	Reinforcement_Agent* agent= new Unified_Neural_Model(random);
 	
 	setFeatures(env);
@@ -105,12 +106,12 @@ int main()
 	bool print_step=false;
 	bool print_average=false;
 	//bool print_accumulated_reward=true;
-	bool print_agent_information=false;
+	bool print_agent_information=true;
 
 	//int trials=100000
 	int trials=200000;		
 	//int trials=200;		
-	//int trials=500;		
+	// int trials=500;
 	//int trials=100000;		
 	
 	int number_of_observation_vars;

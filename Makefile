@@ -1,5 +1,5 @@
 
-PATH_TO_ZWEIFEL_LIBRARY=/home/user/zweifel
+PATH_TO_ZWEIFEL_LIBRARY=/home/etern1c/code/Paper/zweifel
 
 CFLAGS= -O4 -Wall  
 #-Wall -pedantic -ansi 
